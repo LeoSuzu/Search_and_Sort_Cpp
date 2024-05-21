@@ -1,4 +1,4 @@
-# Install script for directory: /Users/LeMac/Library/CloudStorage/OneDrive-TUNI.fi/Data_Structure_and_Algorythms/search_and_sort
+# Install script for directory: /Users/LeMac/Code_projects/Git/GitHub/public/Search_and_Sort_Cpp
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/Users/LeMac/Library/CloudStorage/OneDrive-TUNI.fi/Data_Structure_and_Algorythms/search_and_sort/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/Users/LeMac/Code_projects/Git/GitHub/public/Search_and_Sort_Cpp/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

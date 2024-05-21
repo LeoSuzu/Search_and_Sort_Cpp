@@ -329,47 +329,82 @@ void searchTests(int listSize, int searchRuns)
         system(PAUSE_COMMAND);
     }
 }
-// Algorithm for sequential search
+// Function to perform a sequential search on a list for a given key
 searchResult seqSearch(const List<unsigned int> &list, unsigned int key) {
+    // Create an instance of searchResult to store the search results
     searchResult res;
 
+    // Temporary variable to store the current element from the list
     unsigned int temp;
+
+    // Loop through each element in the list
     for (unsigned int i = 0; i < list.size(); i++) {
+        // Retrieve the element at the current index and store it in temp
         list.retrieve(i, temp);
+
+        // Increment the comparison count
         res.comparisons++;
+
+        // Check if the retrieved element matches the key
         if (temp == key) {
+            // If a match is found, set the success flag to true
             res.success = true;
+
+            // Store the position where the key was found
             res.position = i;
+
+            // Exit the loop as the key has been found
             break;
         }
     }
+
+    // Return the search result containing success flag, position, and comparisons count
     return res;
 }
-// Algorithm for binary search
+// Function to perform a binary search on a sorted list for a given key
 searchResult binSearch(const List<unsigned int> &list, unsigned int key) {
+    // Create an instance of searchResult to store the search results
     searchResult res;
-    res.success = false;
+    res.success = false; // Initialize the success flag to false
 
+    // Initialize the bottom and top indices for the binary search
     int bottom = 0;
     int top = list.size() - 1;
-    unsigned int x;
+    unsigned int x; // Temporary variable to store the current element from the list
 
+    // Loop to perform binary search
     while (bottom <= top) {
+        // Calculate the middle index
         int mid = (bottom + top) / 2;
+
+        // Retrieve the element at the middle index and store it in x
         list.retrieve(mid, x);
+
+        // Increment the comparison count
         res.comparisons++;
 
+        // Check if the retrieved element matches the key
         if (x == key) {
+            // If a match is found, set the success flag to true
             res.success = true;
+
+            // Store the position where the key was found
             res.position = mid;
+
+            // Return the search result immediately
             return res;
-        } else if (x > key) {
+        }
+            // If the retrieved element is greater than the key, adjust the top index
+        else if (x > key) {
             top = mid - 1;
-        } else {
+        }
+            // If the retrieved element is less than the key, adjust the bottom index
+        else {
             bottom = mid + 1;
         }
     }
 
+    // Return the search result containing the success flag, position, and comparisons count
     return res;
 }
 // Initialize lists for search testing
@@ -573,80 +608,114 @@ void sortTests(unsigned int listSize, unsigned int printRange, unsigned int sort
         system(PAUSE_COMMAND); // Pause the system if not preset
     }
 }
-// Algorithm for quick sort
+// Function to perform quick sort on a list
 sortResult quickSort(List<unsigned int> &list, sortResult &result, unsigned int startingPos, unsigned int endingPos) {
+    // Base case: if the starting position is greater than or equal to the ending position, return the result
     if (startingPos >= endingPos) {
         return result;
     }
 
-    unsigned int pivotIndex = startingPos;  // Choose the starting element as pivot
+    // Choose the starting element as the pivot
+    unsigned int pivotIndex = startingPos;
     unsigned int pivot;
     list.retrieve(pivotIndex, pivot);  // Retrieve the pivot element
 
+    // Initialize pointers for the partitioning process
     unsigned int i = startingPos + 1;
     unsigned int j = endingPos;
 
+    // Partition the list around the pivot
     while (i <= j) {
         unsigned int listToSort, listToCompare;
         list.retrieve(i, listToSort);
         list.retrieve(j, listToCompare);
         result.comparisons++;
 
+        // Move the pointers i and j towards each other
         if (listToSort <= pivot) {
             i++;
         } else if (listToCompare >= pivot) {
             j--;
         } else {
-            // Swap elements at i and j
+            // Swap elements at positions i and j
             list.remove(i, listToSort);
             list.insert(i, listToCompare);
             list.remove(j, listToCompare);
             list.insert(j, listToSort);
             i++;
             j--;
-            result.assignments += 2;
+            result.assignments += 2;  // Increment the assignment count
         }
     }
 
-    // Move pivot to its correct position
+    // Move the pivot to its correct position
     list.remove(startingPos, pivot);
     list.insert(j, pivot);
-    result.assignments++;
+    result.assignments++;  // Increment the assignment count
 
-    if (j > startingPos) result = quickSort(list, result, startingPos, j - 1);  // Recursively sort left sublist
-    if (j < endingPos) result = quickSort(list, result, j + 1, endingPos);  // Recursively sort right sublist
+    // Recursively sort the left and right sublists
+    if (j > startingPos) result = quickSort(list, result, startingPos, j - 1);  // Sort the left sublist
+    if (j < endingPos) result = quickSort(list, result, j + 1, endingPos);  // Sort the right sublist
 
+    // Return the sorting result containing the algorithm type, comparison count, and elapsed time
     return result;
 }
-// Algorithm for insertion sort
+// Function to perform insertion sort on a list
 sortResult insertionSort(List<unsigned int> &list, Timer &timing, bool print) {
+    // Create an instance of sortResult to store the sorting results
     sortResult res;
     unsigned int listToSort, listToCompare;
-    timing.reset();  // Start the timer
-    res.algorithm = 'I';  // Set the algorithm type to 'I' for Insertion Sort
 
+    // Reset the timer to start measuring the sorting time
+    timing.reset();
+
+    // Set the algorithm type to 'I' for Insertion Sort
+    res.algorithm = 'I';
+
+    // Start the insertion sort algorithm
     for (auto i = 1; i < list.size(); i++) {
+        // Retrieve the element at position i to be sorted
         list.retrieve(i, listToSort);
+
+        // Initialize j to the position before i
         int j = i - 1;
+
+        // Inner loop to compare and shift elements
         while (j >= 0) {
+            // Retrieve the element at position j to compare
             list.retrieve(j, listToCompare);
+
+            // Increment the comparison count
             res.comparisons++;
+
+            // Optionally print the comparison count every 100000 comparisons
             if (res.comparisons % 100000 == 0 && print) {
+                // Uncomment the following line to print the number of comparisons
                 // cout << "Comparisons done: " << res.comparisons << endl;
             }
+
+            // If the current element is greater than or equal to the element to sort, break the loop
             if (listToSort >= listToCompare) {
                 break;
             }
-            // Move elements to make space for listToSort
+
+            // Move the current element one position forward to make space for the element to sort
             list.remove(j, listToCompare);
             list.insert(j + 1, listToCompare);
+
+            // Decrement j to continue shifting elements
             j--;
         }
-        // Insert listToSort at correct position
-        list.remove(j + 1, listToCompare);  // Use dummy variable here
+
+        // Insert the element to sort at its correct position
+        list.remove(j + 1, listToCompare);  // Use a dummy variable for the remove operation
         list.insert(j + 1, listToSort);
     }
-    res.time = timing.elapsed_time();  // Record the elapsed time
+
+    // Record the elapsed time for the sorting process
+    res.time = timing.elapsed_time();
+
+    // Return the sorting result containing the algorithm type, comparison count, and elapsed time
     return res;
 }
 // Initialize a random list for sorting
