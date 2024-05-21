@@ -1,0 +1,21 @@
+Sorting setting:
+
+Sorts per algorithm: 2
+Length of lists: 1000
+Total time: 2354.87
+
+Insertion Sort:
+
+Avg time per run: 936.125
+Avg operations per sort: 251057
+Avg comparisons per sort: 249066
+Avg assignments per sort: 995
+
+Quick Sort:
+
+Status: Successful
+Avg time per run: 241.31
+Avg operations per sort: 21693
+Avg comparisons per search: 10847
+Avg assignments per sort: 5423
+

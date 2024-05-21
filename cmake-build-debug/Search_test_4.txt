@@ -1,0 +1,28 @@
+Searching setting:
+
+Searches per algorithm: 10
+Length of the lists: 1000
+The largest number in list: 2000
+Total time: 153.31
+Sequential search:
+
+Status: Successful
+Avg time per run: 3.356
+Avg comparisons per search: 444
+Searches: 10
+Status: NOT successful
+Avg time per run: 11.789
+Avg comparisons per search: 1000
+Searches: 10
+Binary Search:
+
+Status: Successful
+Avg time per run: 0.09
+Avg comparisons per search: 9
+Searches: 10
+
+Status: NOT successful
+Avg time per run: 0.096
+Avg comparisons per search: 10
+Searches: 10
+

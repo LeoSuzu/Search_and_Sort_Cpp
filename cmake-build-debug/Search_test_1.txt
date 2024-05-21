@@ -1,0 +1,31 @@
+Searching setting:
+==================
+Searches per algorithm: 50
+Length of lists: 1000
+Largest possible number in list: 2000
+Total time: 668.96
+
+Sequantial Search:
+==================
+Status: Succesful
+Avg time per run: 3.9458
+Avg comparisons per search: 568
+Searches: 50
+
+Status: Unsuccesful
+Avg time per run: 9.235
+Avg comparisons per search: 1000
+Searches: 50
+
+Binary Search:
+==================
+Status: Succesful
+Avg time per run: 0.0956
+Avg comparisons per search: 9
+Searches: 50
+
+Status: Unsuccesful
+Avg time per run: 0.1028
+Avg comparisons per search: 10
+Searches: 50
+
